@@ -6,9 +6,15 @@ const getMember = (req, res) => {
     const {
         params: { memberId },
     } = req;
-    console.log(req.params)
-    const record = recordService.getMember(memberId)
-    res.send({ status: "OK", data: record });
+
+    try {
+        const record = recordService.getMember(memberId)
+        res.send({ status: "OK", data: record });
+    } catch (error) {
+        res
+            .status(error?.status || 500)
+            .send({ status: "FAILED", data: { error: error?.message || error } });
+    }
 
 }
 

@@ -18,8 +18,12 @@ const getRecordForWorkout = (workoutId) => {
 const getMember = (memberId) => {
   try {
     const recordOfMemberId = DB.records.filter((record) => record.memberId === memberId)
-    const member = DB.members.filter((member) => member.id === recordOfMemberId)
-    return member
+    console.log('recordOfMemberId',typeof recordOfMemberId[0].id)
+    const member = DB.members.filter((member) => {
+      return member.id === recordOfMemberId[0].memberId
+    })
+    console.log('member', member)
+    return member[0]
   } catch (error) {
     throw error
   }

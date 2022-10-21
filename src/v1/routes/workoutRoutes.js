@@ -8,7 +8,8 @@ router.get("/", workoutController.getAllWorkouts);
 
 router.get("/:workoutId", workoutController.getOneWorkout);
 
-router.get('/:workoutId/records/:memberId', recordController.getMember)
+//workouts/:workoutId/members/:memberId records/recordId
+router.get('/:workoutId/records/members/:memberId', recordController.getMember)
 
 router.get("/:workoutId/records", recordController.getRecordForWorkout);
 
