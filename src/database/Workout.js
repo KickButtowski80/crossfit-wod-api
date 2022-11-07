@@ -1,20 +1,28 @@
 const DB = require("./db.json");
 const { saveToDatabase } = require("./utils");
+const Arr = require('../filterParamsUtils.js')
 
 const getAllWorkouts = (filterParams) => {
-  try {
-    if(filterParams.length){
-      return DB.workouts.slice(0, parseInt(filterParams.length, 10))
+  // try {
+    const arr = new Arr(DB.workouts, filterParams)
+    console.log("arr is", arr)
+    if (filterParams.length && filterParams.mode) {      
+      return arr
+        .filterArr().sliceArr()
+    }
+    if (filterParams.length) {
+      return arr.sliceArr()
     }
     if (filterParams.mode) {
-      return DB.workouts.filter((workout) =>
-        workout.mode.toLowerCase().includes(filterParams.mode)
-      )
+      return arr.filterArr();
+    }
+    if(filterParams.createdAt){
+      return arr.sortArr(createdAt)
     }
     return DB.workouts;
-  } catch (error) {
-    throw { status: 500, message: error };
-  }
+  // } catch (error) {
+  //   throw { status: 500, message: error };
+  // }
 };
 
 const getOneWorkout = (workoutId) => {
