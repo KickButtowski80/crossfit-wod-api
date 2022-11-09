@@ -15,11 +15,11 @@ const getAllWorkouts = (filterParams) => {
     if (filterParams.mode) {
       return arr.filterArr();
     }
-    // debugger;
+   
     if (filterParams.sort) {
       return arr.sortArr(filterParams.sort)
     }
-    // debugger;
+ 
     return DB.workouts;
   } catch (error) {
     throw { status: 500, message: error };

@@ -15,7 +15,7 @@ Arr.prototype.filterArr = function () {
 };
 
 Arr.prototype.sortArr = function (sortValue) {  
-  // debugger;
+
   this.arr.sort((a, b) => (new Date(a[sortValue]) > new Date(b[sortValue])) ? 1
     : -1)
   return this
