@@ -5,7 +5,6 @@ function Arr(ar = [], otherProp = {}) {
 }
 
 Arr.prototype.sliceArr = function () {
-
   this.arr = this.arr.slice(0, this.prop.length);
   return this;
 };
@@ -15,8 +14,9 @@ Arr.prototype.filterArr = function () {
   return this;
 };
 
-Arr.prototype.sortArr = function (sortValue) {
-  this.arr.sort((a, b) => (a[sortValue] > b[sortValue]) ? 1
+Arr.prototype.sortArr = function (sortValue) {  
+  // debugger;
+  this.arr.sort((a, b) => (new Date(a[sortValue]) > new Date(b[sortValue])) ? 1
     : -1)
   return this
 }

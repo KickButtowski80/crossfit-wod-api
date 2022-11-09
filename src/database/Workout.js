@@ -4,22 +4,23 @@ const Arr = require('../filterParamsUtils.js')
 
 const getAllWorkouts = (filterParams) => {
   // try {
-    const arr = new Arr(DB.workouts, filterParams)
-    console.log("arr is", arr)
-    if (filterParams.length && filterParams.mode) {      
-      return arr
-        .filterArr().sliceArr()
-    }
-    if (filterParams.length) {
-      return arr.sliceArr()
-    }
-    if (filterParams.mode) {
-      return arr.filterArr();
-    }
-    if(filterParams.createdAt){
-      return arr.sortArr(createdAt)
-    }
-    return DB.workouts;
+  const arr = new Arr(DB.workouts, filterParams)
+  if (filterParams.length && filterParams.mode) {
+    return arr
+      .filterArr().sliceArr()
+  }
+  if (filterParams.length) {
+    return arr.sliceArr()
+  }
+  if (filterParams.mode) {
+    return arr.filterArr();
+  }
+  // debugger;
+  if (filterParams.sort) {
+    return arr.sortArr(filterParams.sort)
+  }
+  // debugger;
+  return DB.workouts;
   // } catch (error) {
   //   throw { status: 500, message: error };
   // }
